@@ -19,7 +19,8 @@ public class Consumer {
 
         channel.basicQos(1); // accept only one unack-ed message at a time (see below)
 
-        channel.queueDeclare(QUEUE_NAME, false, false, false, null);
+        boolean durable = true;
+        channel.queueDeclare(QUEUE_NAME, durable, false, false, null);
         System.out.println(" [*] Waiting for messages. To exit press CTRL+C");
         final DefaultConsumer consumer = new DefaultConsumer(channel) {
             @Override
